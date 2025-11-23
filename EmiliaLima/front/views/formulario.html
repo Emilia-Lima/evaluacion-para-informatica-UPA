@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista para Formulario de Registro</title>
+    <title>Formulario de Usuario</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-    <p>Formulario de Registro</p>
+    <h2>Registro de Usuario</h2>
+    <div class="contenedor-formulario">
+        <form id="formUsuario" novalidate>
+
+            <div class="campo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <small class="error" id="errorNombre"></small>
+            </div>
+
+            <div class="campo">
+                <label for="fechaNacimiento">Fecha Nacimiento: (dd-mm-YYYY)</label>
+                <input type="text" id="fechaNacimiento" name="fechaNacimiento" placeholder="dd-mm-YYYY" required>
+                <small class="error" id="errorFecha"></small>
+            </div>
+
+            <div class="campo">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" required>
+                <small class="error" id="errorTelefono"></small>
+            </div>
+
+            <div class="campo">
+                <label for="Correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+                <small class="error" id="errorCorreo"></small>
+            </div>
+
+            <div class="campo">
+                <label>Edad:</label>
+                <span id="edad">0</span>
+            </div>
+
+            <button type="submit" class="btn"> Guardar Usuario </button>
+
+        </form>
+
+        <div id="resultado"></div>
+
+        <script src="../js/formulario.js"></script>
+    </div>
 </body>
+
 </html>
