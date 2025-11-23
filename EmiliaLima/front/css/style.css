@@ -88,3 +88,39 @@ input, select {
     margin-top: 1rem;
     font-weight: bold;
 }
+
+.lista-reportes {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.lista-reportes li {
+  margin: 0;
+}
+
+.lista-reportes button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #0e4a52;
+  background: #21646d;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lista-reportes button:hover {
+  background: #43747a;
+}
+
+#contenidoReporte table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#contenidoReporte th,
+#contenidoReporte td {
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+}

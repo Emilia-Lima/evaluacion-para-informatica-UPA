@@ -19,6 +19,7 @@ export async function ejecutarReporte(req, res) {
                 SELECT u.id, u.nombre, u.fecha, u.telefono, u.correo, u.creacion, e.titulo as estado
                 FROM usuario u
                 INNER JOIN estadoUsuario e on e.id = u.estadoUsuarioId
+                ORDER BY u.id ASC
                 `;
             } else if (codigo === "usuarios_hoy") {
                 query = `
@@ -26,6 +27,7 @@ export async function ejecutarReporte(req, res) {
                 FROM usuario u
                 INNER JOIN estadoUsuario e on e.id = u.estadoUsuarioId
                 WHERE u.creacion = CURDATE()
+                ORDER BY u.id ASC
                 `;
             } else if (codigo === "usuarios_ayer") {
                 query = `
@@ -33,6 +35,7 @@ export async function ejecutarReporte(req, res) {
                 FROM usuario u
                 INNER JOIN estadoUsuario e on e.id = u.estadoUsuarioId
                 WHERE u.creacion = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+                ORDER BY u.id ASC
                 `;
             } else {
                 return res.status(500).json({ mensaje: "El código del reporte no es válido" });

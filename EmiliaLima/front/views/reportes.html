@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista para Reportes</title>
+    <title>Reportes de Usuarios</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-    <p>Vista para Reportes</p>
+    <h2>Reportes</h2>
+    <div class="contenedor-botones">
+        <ul class="lista-reportes">
+            <li><button data-reporte="todos_usuarios">Todos los Usuarios</button></li>
+            <li><button data-reporte="usuarios_hoy">Usuarios creados hoy</button></li>
+            <li><button data-reporte="usuarios_ayer">Usuarios creados ayer</button></li>
+        </ul>
+    </div>
+
+    <div id="contenidoReporte" class="contenedor-botones"></div>
+    <script src="../js/reportes.js"></script>
+
 </body>
+
 </html>
