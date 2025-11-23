@@ -14,7 +14,7 @@ CREATE TABLE usuario (
     fecha DATE NOT NULL,
     telefono VARCHAR(20) NOT NULL,
     correo VARCHAR(150) NOT NULL,
-    creacion DATETIME NOT NULL,
+    creacion DATE NOT NULL,
     estadoUsuarioId INT NOT NULL,
     CONSTRAINT fk_estado_usuario FOREIGN KEY (estadoUsuarioId) REFERENCES estadoUsuario(id)
 );

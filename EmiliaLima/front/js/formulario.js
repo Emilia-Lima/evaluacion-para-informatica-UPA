@@ -26,6 +26,14 @@ function limpiarErrores() {
     resultadoDiv.textContent = "";
 }
 
+function limpiarInputs(){
+    nombreInput.value = "";
+    fechaInput.value = "";
+    correoInput.value = "";
+    telefonoInput.value = "";
+    edadSpan.value = 0;
+}
+
 function calcularEdad(fechaTexto) {
     if (!regexFecha.test(fechaTexto)) {
         return null;
@@ -94,6 +102,7 @@ form.addEventListener("submit", async (e) => {
     edadSpan.textContent = edad ?? 0;
 
     try {
+
         const resp = await fetch("http://localhost:3000/guardar_usuario", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,10 +120,12 @@ form.addEventListener("submit", async (e) => {
             resultadoDiv.textContent = data.mensaje || "Ocurrió un error.";
             resultadoDiv.style.color = "red";
         }
-        else{
-            resultadoDiv.textContent = 'Usuario almacenado con éxito';
+        else {
+            resultadoDiv.textContent = data.mensaje + " ID: " + data.id;
             resultadoDiv.style.color = "green";
-        }
+
+            limpiarInputs();
+        }        
 
     } catch (error) {
         resultadoDiv.textContent = "Error al comunicarse con el servidor";
