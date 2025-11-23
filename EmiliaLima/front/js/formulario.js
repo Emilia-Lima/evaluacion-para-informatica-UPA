@@ -31,7 +31,7 @@ function limpiarInputs(){
     fechaInput.value = "";
     correoInput.value = "";
     telefonoInput.value = "";
-    edadSpan.value = 0;
+    edadSpan.textContent = 0;
 }
 
 function calcularEdad(fechaTexto) {
