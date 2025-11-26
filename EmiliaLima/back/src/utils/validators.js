@@ -1,8 +1,8 @@
 
 //EXPRESIONES REGULARES PARA VALIDACIONES
 export const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-export const regexTelefono = /^[1-9]?[0-9]{1}$|^100$/;
-export const regexPunteo = /^[1-100]+$/;
+export const regexPunteo = /^[1-9]?[0-9]{1}$|^100$/;
+export const regexTelefono = /^[1-100]+$/;
 export const regexFecha = /^\d{2}-\d{2}-\d{4}$/;
 export const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
