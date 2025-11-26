@@ -51,10 +51,12 @@ export async function guardarPunteoUsuario(req, res) {
 
             const [punteoUsuario] = await conn.execute(
                 `SELECT 
-                    SUM(p.punteo) as punteo                
-                FROM punteo_usuario p                
-                WHERE idUsuario = ?
-                GROUP BY punteo;`,
+                    SUM(p.punteo) as punteo,
+                    u.nombre
+                FROM punteo_usuario p   
+                INNER JOIN usuario u on u.id = p.idUsuario             
+                WHERE p.idUsuario = ?
+                GROUP BY u.nombre`,
                 [idUsuario]
             );
 

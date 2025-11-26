@@ -54,3 +54,39 @@ export async function ejecutarReporte(req, res) {
 
     }
 }
+
+export async function reporteTop(req, res) {
+    try {
+
+        const conn = await pool.getConnection();
+
+        try {
+
+            let query = `SELECT 
+                            u.id,
+                            u.nombre,
+                            u.fecha,
+                            u.telefono,
+                            u.correo,
+                            u.creacion,
+                            e.titulo as estado,
+                            SUM(p.punteo) as punteo
+                        FROM punteo_usuario p  
+                        INNER JOIN usuario u on u.id = p.idUsuario      
+                        INNER JOIN estadousuario e on e.id = u.estadoUsuarioId       
+                        GROUP BY u.id
+                        ORDER BY punteo DESC 
+                        LIMIT 3`;
+
+            const [result] = await conn.execute(query);
+            return res.json(result);
+        }
+        finally {
+            conn.release();
+        }
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ mensaje: "Ocurrió un error con el servidor", error });
+    }
+}

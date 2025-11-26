@@ -1,5 +1,6 @@
 const botones = document.querySelectorAll("button[data-reporte]");
 const contenido = document.getElementById("contenidoReporte");
+const btnReporteTop = document.getElementById("btnReporteTop");
 
 const encabezados = {
     id: "ID",
@@ -57,7 +58,7 @@ botones.forEach((btn) => {
 
             thead.appendChild(headerRow);
             table.appendChild(thead);
-           
+
             const tbody = document.createElement("tbody");
 
             data.forEach(row => {
@@ -68,8 +69,8 @@ botones.forEach((btn) => {
 
                     if (k === "creacion") {
                         td.textContent = formatearFecha(row[k]);
-                    } 
-                    else if (k === "fecha"){
+                    }
+                    else if (k === "fecha") {
                         td.textContent = formatearFecha(row[k]);
                     }
                     else {
@@ -83,7 +84,7 @@ botones.forEach((btn) => {
             });
 
             table.appendChild(tbody);
-           
+
             contenido.innerHTML = "";
             contenido.appendChild(table);
 
@@ -92,4 +93,117 @@ botones.forEach((btn) => {
             contenido.textContent = "Error al comunicarse con el servidor.";
         }
     });
+});
+
+btnReporteTop.addEventListener("click", async () => {
+    try {
+
+        const resp = await fetch(`http://localhost:3000/reportes/top`);
+        const data = await resp.json();
+
+        if (!resp.ok) {
+            contenido.textContent = data.mensaje || "Error al ejecutar el reporte";
+            contenido.style.color = "red";
+            return;
+        }
+
+        if (!Array.isArray(data) || data.length === 0) {
+            contenido.textContent = "Sin datos para este reporte";
+            contenido.style.color = "black";
+            return;
+        }
+
+        const table = document.createElement("table");
+        table.border = "1";
+        table.cellPadding = "5";
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+
+        const tdId = document.createElement("td");
+        tdId.textContent = "ID";
+
+        const tdNombre = document.createElement("td");
+        tdNombre.textContent = "Nombre";
+
+        const tdFechaNacimiento = document.createElement("td");
+        tdFechaNacimiento.textContent = "Fecha Nacimiento";
+
+        const tdTelefono = document.createElement("td");
+        tdTelefono.textContent = "Teléfono";
+
+        const tdCorreo = document.createElement("td");
+        tdCorreo.textContent = "Correo Eléctronico";
+
+        const tdCreacion = document.createElement("td");
+        tdCreacion.textContent = "Fecha Creación";
+
+        const tdEstado = document.createElement("td");
+        tdEstado.textContent = "Estado";
+
+        const tdPunteo = document.createElement("td");
+        tdPunteo.textContent = "Punteo";
+
+        headerRow.appendChild(tdId);
+        headerRow.appendChild(tdNombre);
+        headerRow.appendChild(tdFechaNacimiento);
+        headerRow.appendChild(tdTelefono);
+        headerRow.appendChild(tdCorreo);
+        headerRow.appendChild(tdCreacion);
+        headerRow.appendChild(tdEstado);
+        headerRow.appendChild(tdPunteo);
+
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+
+        data.forEach(row => {
+            const tr = document.createElement("tr");
+
+            const tdId = document.createElement("td");
+            tdId.textContent = row.id;
+
+            const tdNombre = document.createElement("td");
+            tdNombre.textContent = row.nombre;
+
+            const tdFechaNacimiento = document.createElement("td");
+            tdFechaNacimiento.textContent = formatearFecha(row.fecha);
+
+            const tdTelefono = document.createElement("td");
+            tdTelefono.textContent = row.telefono;
+
+            const tdCorreo = document.createElement("td");
+            tdCorreo.textContent = row.correo;
+
+            const tdCreacion = document.createElement("td");
+            tdCreacion.textContent = formatearFecha(row.creacion);
+
+            const tdEstado = document.createElement("td");
+            tdEstado.textContent = row.estado;
+
+            const tdPunteo = document.createElement("td");
+            tdPunteo.textContent = row.punteo;
+
+            tr.appendChild(tdId);
+            tr.appendChild(tdNombre);
+            tr.appendChild(tdFechaNacimiento);
+            tr.appendChild(tdTelefono);
+            tr.appendChild(tdCorreo);
+            tr.appendChild(tdCreacion);
+            tr.appendChild(tdEstado);
+            tr.appendChild(tdPunteo);
+
+            tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+
+        contenido.innerHTML = "";
+        contenido.appendChild(table);
+
+    } catch (error) {
+        console.error(error);
+        console.log(error);
+        contenido.textContent = "Error al comunicarse con el servidor.";
+    }
 });
