@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Ingreso Punteo Usuario</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h2>Registro de Punteo Usuario</h2>
+    <div class="contenedor-formulario">
+        <form id="formPunteoUsuario" novalidate>
+
+            <div class="campo">
+                <label for="correo">Correo del Usuario:</label>
+                <input type="text" id="correo" name="correo" required>
+                <small class="error" id="errorCorreo"></small>
+            </div>           
+
+            <div class="campo">
+                <label for="punteo">Punteo:</label>
+                <input type="text" id="punteo" name="punteo" required>
+                <small class="error" id="errorPunteo"></small>
+            </div>           
+
+            <button type="submit" class="btn"> Guardar Punteo </button>
+
+        </form>
+
+        <div id="resultado"></div>
+
+        <script src="../js/punteousuario.js"></script>
+    </div>
+</body>
+
+</html>
