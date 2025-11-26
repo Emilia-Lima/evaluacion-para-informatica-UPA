@@ -4,6 +4,6 @@ import { createPool } from "mysql2/promise";
 export const pool = createPool({
     host: "localhost",
     user: "root",
-    password: "root12345#",
-    database: "evaluacion_emilia_geovana_lima_palencia"
+    password: "Ujsd#hfQ@s_15",
+    database: "evaluacion_emilia_geovana_lima_palencia",
 });
